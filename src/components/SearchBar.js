@@ -17,7 +17,7 @@ class SearchBar extends React.Component {
     return (
       <div className="container">
         <form onSubmit={this.onFormSubmit}>
-          <label>Enter zip/Zip:</label>
+          <label>Enter City/Zip:</label>
           <input
             type="text"
             value={this.state.zip}
