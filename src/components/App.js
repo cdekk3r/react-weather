@@ -4,18 +4,23 @@ import SearchBar from "./SearchBar";
 import WeatherDetail from "./WeatherDetail";
 
 class App extends React.Component {
-  state = { forecast: [], daily: [] };
+  state = { weather: [], daily: [] };
 
   onSearchSubmit = async zip => {
-    const response = await openweather.get("/data/2.5/weather", {
-      params: { zip, APPID: "e7bbd14c36c6079911812e5dccc8b366" }
+    const currentWeather = openweather.get("/data/2.5/weather", {
+      params: { zip }
     });
 
-    const daily = await openweather.get("/data/2.5/forecast", {
-      params: { zip, APPID: "e7bbd14c36c6079911812e5dccc8b366" }
+    const fiveDayForecast = openweather.get("/data/2.5/forecast", {
+      params: { zip }
     });
 
-    this.setState({ forecast: response.data, daily: daily.data.list });
+    const [weather, daily] = await Promise.all([
+      currentWeather,
+      fiveDayForecast
+    ]);
+
+    this.setState({ weather: weather.data, daily: daily.data.list });
     console.log(this.state);
   };
 
@@ -23,7 +28,7 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar onSubmit={this.onSearchSubmit} />
-        <WeatherDetail forecast={this.state.forecast} />
+        <WeatherDetail weather={this.state.weather} />
       </div>
     );
   }
