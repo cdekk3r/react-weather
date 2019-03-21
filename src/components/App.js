@@ -1,7 +1,7 @@
 import React from "react";
 import openweather from "../api/openweather";
 import SearchBar from "./SearchBar";
-import WeatherDetail from "./WeatherDetail";
+import CurrentWeather from "./CurrentWeather";
 
 class App extends React.Component {
   state = { weather: [], daily: [] };
@@ -21,14 +21,14 @@ class App extends React.Component {
     ]);
 
     this.setState({ weather: weather.data, daily: daily.data.list });
-    console.log(this.state);
+    console.log(this.state.weather);
   };
 
   render() {
     return (
       <div>
         <SearchBar onSubmit={this.onSearchSubmit} />
-        <WeatherDetail weather={this.state.weather} />
+        <CurrentWeather weather={this.state.weather} />
       </div>
     );
   }
