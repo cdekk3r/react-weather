@@ -1,13 +1,17 @@
 import React from "react";
-import DayForecast from "./DayForecast";
 
-const CurrentWeather = ({ weather }) => {
-  const { main } = weather;
+const CurrentWeather = ({ current }) => {
+  console.log(current);
+  const { main, weather } = current;
+
   return (
     <div>
       <h1>Current weather</h1>
-      <h3>City: {weather.name}</h3>
-      <h5>Temperature:{main ? main.temp : ""}</h5>
+      <h3>City: {current.name}</h3>
+      <div>
+        <div>Temperature:{main ? main.temp : ""}</div>
+        <div>Condition: {weather ? weather[0].description : ""}</div>
+      </div>
     </div>
   );
 };
