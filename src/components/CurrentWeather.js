@@ -1,16 +1,19 @@
 import React from "react";
 
 const CurrentWeather = ({ current }) => {
-  console.log(current);
   const { main, weather } = current;
 
+  if (!main) {
+    return <h2>Current Forecast</h2>;
+  }
+
   return (
-    <div>
-      <h1>Current weather</h1>
-      <h3>City: {current.name}</h3>
+    <div className="ui-current">
+      <h2>Current Forecast</h2>
+      <h4>City: {current.name}</h4>
       <div>
-        <div>Temperature:{main ? main.temp : ""}</div>
-        <div>Condition: {weather ? weather[0].description : ""}</div>
+        <div>Temperature:{Math.round(main.temp)}</div>
+        <div>Condition: {weather[0].description}</div>
       </div>
     </div>
   );

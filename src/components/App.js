@@ -26,7 +26,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="ui-container">
         <SearchBar onSubmit={this.onSearchSubmit} />
         <CurrentWeather current={this.state.weather} />
         <DailyForecast days={this.state.daily} />
