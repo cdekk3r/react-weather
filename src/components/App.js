@@ -19,7 +19,9 @@ class App extends React.Component {
     const [weather, daily] = await Promise.all([
       currentWeather,
       fiveDayForecast
-    ]);
+    ]).catch(err => {
+      alert("Please enter a valid zipcode");
+    });
 
     this.setState({ weather: weather.data, daily: daily.data.list });
   };

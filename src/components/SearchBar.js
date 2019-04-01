@@ -15,8 +15,8 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.onFormSubmit}>
+      <div className="search-container">
+        <form className="input" onSubmit={this.onFormSubmit}>
           <label>Enter Zip:</label>
           <input
             type="text"
